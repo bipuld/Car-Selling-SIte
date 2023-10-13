@@ -8,7 +8,11 @@ from cars.models import Car
 
 def cars(request):
     car=Car.objects.order_by('-created_date').all()
-    
+    model_fields=Car.objects.values_list('model',flat=True).distinct() #this will give individual data from the database no repeating adn return the value in list
+    location_fields=Car.objects.values_list('city',flat=True).distinct()
+    build_year=Car.objects.values_list('year',flat=True).distinct()
+    body_fields=Car.objects.values_list('body_style',flat=True).distinct()
+    transmission=Car.objects.values_list('transmission',flat=True).distinct()
     
     paginator=Paginator(car,3)
     page=request.GET.get('page')
@@ -16,7 +20,12 @@ def cars(request):
     
     
     context={
-        'cars': paged_cars
+        'cars': paged_cars,
+        'model_fields':model_fields,
+        'location_fields':location_fields,
+        'build_fields':  build_year,
+        'body_fields': body_fields,
+        'transmission':transmission
     }
     return render (request,'cars/cars.html',context)
 
@@ -30,8 +39,11 @@ def car_details(request, id):
 
 def search(request):
     car=Car.objects.order_by('-created_date').all()
-    
-    
+    model_fields=Car.objects.values_list('model',flat=True).distinct()
+    location_fields=Car.objects.values_list('city',flat=True).distinct()
+    condition_fields=Car.objects.values_list('condition',flat=True).distinct()
+    year_fields=Car.objects.values_list('year',flat=True).distinct()
+    transmission_fields=Car.objects.values_list('transmission',flat=True).distinct()
     
     
     # this is for the search fields
@@ -75,7 +87,12 @@ def search(request):
             car=car.filter(price__gte=minPrice,price__lte=maxprice)
                   
     context={
-        'cars':car
+        'cars':car,
+        'model_fields':model_fields,
+        'location_fields':location_fields,
+        'condition_fields':condition_fields,
+        'year_fields,':year_fields,
+        'transmission_fields':transmission_fields
         
     }
     return render(request,'cars/search.html',context)

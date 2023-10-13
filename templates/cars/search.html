@@ -21,36 +21,26 @@
     <div class="container">
         <div class="search-area-inner">
             <div class="search-contents">
-                <form method="GET">
+                <form action='{% url "search" %}' method="GET">
                     <div class="row">
+                       
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields" name="select-brand">
-                                    <option disabled="disabled" selected="selected">Select Brand</option>
-                                    <option>Audi</option>
-                                    <option>BMW</option>
-                                    <option>Honda</option>
-                                    <option>Nissan</option>
+                                <select class="selectpicker search-fields" name="model">
+                                    <option disabled="disabled" selected="selected">Select Model</option>
+                                  {% for car_model in model_fields %}
+                                    <option value="{{car_model}}">{{car_model}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="form-group">
-                                <select class="selectpicker search-fields" name="select-make">
-                                    <option disabled="disabled" selected="selected">Select Make</option>
-                                    <option>BMW</option>
-                                    <option>Honda</option>
-                                    <option>Lamborghini Huracán</option>
-                                    <option>Sports Car</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <div class="form-group">
-                                <select class="selectpicker search-fields" name="select-location">
+                                <select class="selectpicker search-fields" name="location">
                                     <option disabled="disabled" selected="selected">Select Location</option>
-                                    <option>United States</option>
-                                    <option>United Kingdom</option>
+                                    {% for car_location in location_fields %}
+                                    <option value="{{car_location}}">{{car_location}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -71,8 +61,9 @@
                             <div class="form-group">
                                 <select class="selectpicker search-fields" name="select-type">
                                     <option disabled="disabled" selected="selected">Select Type Of Car</option>
-                                    <option>New Car</option>
-                                    <option>Used Car</option>
+                                    {% for car_condition in condition_fields %}
+                                    <option value="{{car_condition}}">{{car_condition}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -80,8 +71,9 @@
                             <div class="form-group">
                                 <select class="selectpicker search-fields" name="transmission">
                                     <option disabled="disabled" selected="selected">Transmission</option>
-                                    <option>Automatic</option>
-                                    <option>Manual</option>
+                                    {% for car_transmission in transmission_fields %}
+                                    <option value="{{car_transmission}}">{{car_transmission}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
