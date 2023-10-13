@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,HttpResponse
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 
 from cars.models import Car
@@ -26,3 +26,17 @@ def car_details(request, id):
         'single_car': single_car,
     }
     return render(request, 'cars/car_details.html', data)
+
+
+def search(request):
+    car=Car.objects.order_by('-created_date').all()
+    
+    if 'keyword' in request.GET:
+        keyword=request.GET['keyword']
+        if keyword:
+            car=car.filter(description__icontains=keyword)
+            
+    context={
+        'cars':car
+    }
+    return render(request,'cars/search.html',context)
