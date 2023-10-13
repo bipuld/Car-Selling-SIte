@@ -1,6 +1,30 @@
 {% extends 'base.html' %} {% load static %}
 {% load humanize %}
  {% block content %}
+ <style>
+  .car-box-3 {
+    height: 400px; /* Adjust the height as needed */
+}
+.detail .title {
+  max-height: 2em; /* Limit to 2 lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail p {
+  max-height: 4em; /* Limit to 4 lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.car-thumbnail img {
+  min-height: 262px;
+  max-height: 262px;
+  /* Add max-width or other styling as needed to maintain the aspect ratio */
+}
+
+ </style>
 <!-- Banner start -->
 <div class="banner" id="banner">
   <div
