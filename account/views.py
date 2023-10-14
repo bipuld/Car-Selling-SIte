@@ -1,12 +1,24 @@
 from django.shortcuts import render,redirect,HttpResponse
-from django.contrib import messages
+from django.contrib import messages,auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 # Create your views here.
 
 def login(request):
+    if request.method == "POST":
+        username=request.POST['username']
+        password=request.POST['password']
+        user=auth.authenticate(username=username,password=password)
+        print(request.POST)
+        if user is not None:
+            auth.login(request,user)
+            messages.success(request,"Successfully log in ") 
+            return redirect('dashboard')
+        else:
+            messages.error(request,"Invalid Credential")
+            return redirect('login')
+            
     return render(request,'account/login.html')
-
 def signup(request):
     if request.method == "POST":
         firstname=request.POST['firstname']
@@ -25,12 +37,8 @@ def signup(request):
                     messages.error(request,'email already exists')
                 else:
                     user=User.objects.create_user(first_name=firstname,last_name=lastname,username=username,email=email,password=password)
-                    
-                    # authenticate.login(request,user)
-                    # messages.success(request,'you are sucessfully login ')
-                    # return redirect('dashboard')
                     user.save()
-                    messages.success(request,'account haas been created successfully')
+                    messages.success(request,'account has been created successfully')
         else:
             messages.error(request,'Sorry password not match')
             return redirect('signup')
@@ -39,7 +47,10 @@ def signup(request):
     return render(request,'account/signup.html')
 
 def logout(request):
-    return logout('home')
+    if request.method == "POST":
+        auth.logout(request)
+        messages.success(request,"You are now logout !!")
+        return redirect('home')
 
 def dashboard(request):
     return render(request,'account/dashboard.html')

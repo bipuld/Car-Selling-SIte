@@ -1,7 +1,11 @@
 {% extends 'base.html' %} {% load static %}
 {% load humanize %}
+
+{% block title %}
+Home
+{% endblock  %}
  {% block content %}
- <style>
+ {% comment %} <style>
   .car-box-3 {
     height: 400px; /* Adjust the height as needed */
 }
@@ -24,7 +28,7 @@
   /* Add max-width or other styling as needed to maintain the aspect ratio */
 }
 
- </style>
+ </style> {% endcomment %}
 <!-- Banner start -->
 <div class="banner" id="banner">
   <div
@@ -188,7 +192,9 @@
 <!-- Banner end -->
 
 <!-- Search box 2 end -->
-
+<div class="mt-3">
+{% include 'includes/messages.html' %}
+</div>
 <!-- Featured car start -->
 <div class="featured-car content-area-5">
   <div class="container">
