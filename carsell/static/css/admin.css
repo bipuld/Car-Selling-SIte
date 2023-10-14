@@ -1,0 +1,131 @@
+/* Header */
+
+#header {
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0px 0px 10px 0px #ff0000;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+#header a:link,
+#header a:visited {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+#header a:hover {
+    color: #ff6666;
+}
+
+
+/* Breadcrumbs */
+
+div.breadcrumbs {
+    background-color: #1c1f1f;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+/* Module Headers */
+
+.module h2,
+.module caption,
+.inline-group h2 {
+    background-color: #1c1f1f;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+/* Buttons */
+
+.button,
+input[type=submit],
+input[type=button],
+.submit-row input,
+a.button {
+    background-color: #4e5557;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    border-radius: 5px;
+}
+
+.button:active,
+input[type=submit]:active,
+input[type=button]:active,
+.button:focus,
+input[type=submit]:focus,
+input[type=button]:focus,
+.button:hover,
+input[type=submit]:hover,
+input[type=button]:hover {
+    background-color: #1f2121;
+}
+
+
+/* Default Buttons */
+
+.button.default,
+input[type=submit].default,
+.submit-row input.default {
+    background-color: #1c1f1f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    border-radius: 5px;
+}
+
+.button.default:active,
+input[type=submit].default:active,
+.button.default:focus,
+input[type=submit].default:focus,
+.button.default:hover,
+input[type=submit].default:hover {
+    background-color: #333;
+}
+
+
+/* Links */
+
+a:link,
+a:visited {
+    color: #4e5557;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ff0000;
+    text-decoration: underline;
+}
+
+
+/* Additional Animations */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Apply fadeIn animation to specific elements */
+
+.example-fade-in {
+    animation: fadeIn 1s ease-in-out;
+    animation-fill-mode: both;
+}
