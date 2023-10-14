@@ -27,8 +27,15 @@
                             <img src="{% static 'img/logos/black-logo.png' %}" alt="logo">
                         </a>
                     </div>
+
+                    {% include "includes/messages.html" %}
+                    
+
+
                     <h3>Create an account</h3>
-                    <form action="#" method="GET">
+                    
+                    <form action="{% url 'signup' %}" method="POST">
+                        {% csrf_token %}
                         <div class="form-group form-box">
                             <input type="text" name="firstname" class="input-text" placeholder="First Name">
                             <i class="fa fa-user"></i>
@@ -65,7 +72,7 @@
                             <li><a href="#" class="google-bg"><i class="fa fa-google google-i"></i><span>Google</span></a></li>
                         </ul>
                     </form>
-                    <p>Already a member? <a href="login.html" class="thembo"> Login here</a></p>
+                    <p>Already a member? <a href="{% url 'login' %}" class="thembo"> Login here</a></p>
                 </div>
             </div>
         </div>
