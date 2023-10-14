@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pages.urls')),
     path('',include('cars.urls')),
+    path('account/',include('account.urls')),
     
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) #configuration for media settng in database setting
