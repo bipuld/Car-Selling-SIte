@@ -22,5 +22,5 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('',include('cars.urls')),
     path('account/',include('account.urls')),
-    
+    path('auth/', include('social_django.urls', namespace='social')),    
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) #configuration for media settng in database setting

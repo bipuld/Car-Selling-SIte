@@ -53,4 +53,5 @@ def logout(request):
         return redirect('home')
 
 def dashboard(request):
+    
     return render(request,'account/dashboard.html')

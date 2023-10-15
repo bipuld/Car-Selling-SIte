@@ -7,14 +7,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3@w6l=22xu_wgr_yf66_96y5c%*g!_zsu-(jkz_-7u7c!0+i@*'
 
 DEBUG = True
+LOGIN_REDIRECT_URL = 'dashboard'
 
 ALLOWED_HOSTS = []
 
-
-
 INSTALLED_APPS = [
     'cars.apps.CarsConfig',
-    'pages.apps.PagesConfig', #register app in django
+    'pages.apps.PagesConfig',
+    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -22,9 +22,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',
-    'multiselectfield',
     'django.contrib.humanize',
-    'account'
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +56,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'carsell.wsgi.application'
 
+# for the socail login
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2', #for facebook
+    'django.contrib.auth.backends.ModelBackend',  # or other backends you use
+)
 
+SOCIAL_AUTH_FACEBOOK_KEY = '297042666599188'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'bbfe4b2eebb145f7fcb674e52e5696c5'
+# # SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'your_client_id'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'your_client_secret'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'your_client_id'
+# for google login and signin
+
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -102,11 +115,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
