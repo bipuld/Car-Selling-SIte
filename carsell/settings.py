@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'django.contrib.humanize',
     'social_django',
+    'Inquiry'
 ]
 
 MIDDLEWARE = [
