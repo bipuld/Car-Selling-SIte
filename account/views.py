@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages,auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+
+from Inquiry.models import Inquire
 # Create your views here.
 
 def login(request):
@@ -53,5 +55,8 @@ def logout(request):
         return redirect('home')
 
 def dashboard(request):
-    
-    return render(request,'account/dashboard.html')
+    user_inquiry=Inquire.objects.order_by('-create_date').filter(user_id=request.user.id)        
+    data={
+        'inquires':user_inquiry
+    }
+    return render(request,'account/dashboard.html',data)

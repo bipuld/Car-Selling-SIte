@@ -12,7 +12,7 @@ Dashboard
             <h1>Dashboard</h1>
             <ul class="breadcrumbs">
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li class="active">Username</li>
+                <li class="active">{{user.first_name}}</li>
             </ul>
         </div>
     </div>
@@ -38,28 +38,21 @@ Dashboard
 		</tr>
 	  </thead>
 	  <tbody>
+		{% if inquires %}
+		{% for inquiry in inquires %}
 		<tr>
 		  <th scope="row">1</th>
-		  <td>Lamborgini Huracan</td>
-		  <td>Austin</td>
+		  <td>{{inquiry.car_title}}</td>
+		  <td>{{inquiry.city}}</td>
 		  <td>$25000</td>
-		  <td><a href="#" class="btn btn-outline-dark">View Car</a></td>
+		  <td><a href="{% url 'car_details'  inquiry.car_id %}" class="btn btn-outline-dark">View Car</a></td>
 		</tr>
-		<tr>
-		  <th scope="row">2</th>
-		  <td>Lamborgini Huracan</td>
-		  <td>Austin</td>
-		  <td>$25000</td>
-		  <td><a href="#" class="btn btn-outline-dark">View Car</a></td>
-		</tr>
-		<tr>
-		  <th scope="row">3</th>
-		  <td>Lamborgini Huracan</td>
-		  <td>Austin</td>
-		  <td>$25000</td>
-		  <td><a href="#" class="btn btn-outline-dark">View Car</a></td>
-		</tr>
-	  </tbody>
+		{% endfor %}
+		{% else %}
+		<h2>Sorry,no inquired available in your account for inquiry you have login in our account <a href="{% url 'login'  %}">Login<a> </h2>
+	{% endif %}  
+	</tbody>
+
 	</table>
 </div>
 
