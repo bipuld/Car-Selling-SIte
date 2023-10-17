@@ -2,8 +2,9 @@ from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages,auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-
+from django.contrib.auth.decorators import login_required
 from Inquiry.models import Inquire
+from cars.models import Car
 # Create your views here.
 
 def login(request):
@@ -53,10 +54,11 @@ def logout(request):
         auth.logout(request)
         messages.success(request,"You are now logout !!")
         return redirect('home')
-
+    
+@login_required(login_url="login")
 def dashboard(request):
-    user_inquiry=Inquire.objects.order_by('-create_date').filter(user_id=request.user.id)        
+    user_inquiry=Inquire.objects.order_by('-create_date').filter(user_id=request.user.id)   
     data={
-        'inquires':user_inquiry
+        'inquires':user_inquiry,
     }
     return render(request,'account/dashboard.html',data)

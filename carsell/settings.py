@@ -143,13 +143,13 @@ MESSAGE_TAGS = {
 
 
 # # Email configuration for Gmail
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Use SMTP as the email backend
-# EMAIL_HOST = 'smtp.gmail.com'  # SMTP server for Gmail
-# EMAIL_PORT = 587  # Port for TLS (secure) connection
-# EMAIL_HOST_USER = 'bida_csit2077@lict.edu.np'  # Your Gmail email address
-# EMAIL_HOST_PASSWORD =  '' # Your Gmail password or an "App Password" if you have 2-factor authentication enabled
-# EMAIL_USE_TLS = True  # Use TLS (secure connection)
-# EMAIL_USE_SSL = False  # Do not use SSL (False for TLS)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Use SMTP as the email backend
+EMAIL_HOST = 'smtp.gmail.com'  # SMTP server for Gmail
+EMAIL_PORT = 587  # Port for TLS (secure) connection
+EMAIL_HOST_USER = 'bida_csit2077@lict.edu.np'  # Your Gmail email address
+EMAIL_HOST_PASSWORD =  '9800775184@ppas' # Your Gmail password or an "App Password" if you have 2-factor authentication enabled
+EMAIL_USE_TLS = True  # Use TLS (secure connection)
+EMAIL_USE_SSL = False  # Do not use SSL (False for TLS)
 
 # # Additional email settings (optional)
 # DEFAULT_FROM_EMAIL = 'dawadirishab@gmail,com'  # Default "from" address for emails

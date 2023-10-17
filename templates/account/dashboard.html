@@ -44,17 +44,62 @@ Dashboard
 		  <th scope="row">1</th>
 		  <td>{{inquiry.car_title}}</td>
 		  <td>{{inquiry.city}}</td>
-		  <td>$25000</td>
+		  <td>$</td>
+
+		  
 		  <td><a href="{% url 'car_details'  inquiry.car_id %}" class="btn btn-outline-dark">View Car</a></td>
 		</tr>
 		{% endfor %}
 		{% else %}
-		<h2>Sorry,no inquired available in your account for inquiry you have login in our account <a href="{% url 'login'  %}">Login<a> </h2>
+		<div class="message">
+			<strong>Sorry, to inquire you need to create an account or log in</strong>
+		  </div>
+		  <div class="button-container">
+			<a href="{% url 'login' %}">
+			  <span class="icon">🔒</span>
+			  Login
+			</a>
+			<a href="{% url 'signup' %}">
+			  <span class="icon">📝</span>
+			  Signup
+			</a>
+		  </div>
 	{% endif %}  
 	</tbody>
 
 	</table>
 </div>
+<style>
+	.message {
+		text-align: center;
+		font-size: 18px;
+		margin-bottom: 30px;
+	  }
+	
+	  .button-container {
+		text-align: center;
+	  }
+	
+	  .button-container a {
+		display: inline-block;
+		margin: 10px;
+		text-decoration: none;
+		color: #fff;
+		background-color: #3498db;
+		border: 1px solid #3498db;
+		border-radius: 5px;
+		padding: 10px 20px;
+		transition: background-color 0.3s;
+	  }
+	
+	  .button-container a .icon {
+		margin-right: 5px;
+	  }
+	
+	  .button-container a:hover {
+		background-color: #217dbb;
+	  }
+  </style>
 
 <!--   Dashboard End   -->
 

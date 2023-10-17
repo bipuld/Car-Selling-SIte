@@ -10,6 +10,7 @@ class Inquire(models.Model):
     car_title=models.CharField(max_length=200)
     first_name=models.CharField(max_length=150)
     last_name=models.CharField(max_length=150)
+    # price=models.IntegerField(default="")
     customer_need=models.CharField(max_length=250)
     city=models.CharField(max_length=150)
     state=models.CharField(max_length=150)

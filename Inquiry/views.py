@@ -19,7 +19,6 @@ def inquiry(request):
         email=request.POST['email']
         phone=request.POST['phone']
         message=request.POST['message']
-        print(request.POST)
         contact= Inquire(car_id=car_id,car_title=car_title,user_id=user_id,first_name=first_name,last_name=last_name,customer_need=customer_need,city=city,state=state,email=email,phone=phone,message=message)
         contact.save()
         

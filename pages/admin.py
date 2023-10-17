@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Team
 from django.utils.html import format_html
+from .models import Contact
 # Register your models here.
 class TeamAdmin(admin.ModelAdmin):
     def thumbnail(self,obj):
@@ -15,4 +16,10 @@ admin.site.register(Team,TeamAdmin)
 admin.site.site_header = "Admin Team"
 admin.site.index_title = "Welcome to Car B&S"
 admin.site.site_title = "project tutorial"  
-
+@admin.register(Contact)
+class Contact(admin.ModelAdmin):
+    
+    list_display=('id','name','email', 'phone', 'contact_date',)
+    list_filter=('name' ,)
+    list_display_links=('id', 'email',)
+    search_fields=('id', 'email')

@@ -1,6 +1,9 @@
-from django.shortcuts import render,HttpResponse
-from .models import Team
+from django.shortcuts import render,HttpResponse,redirect
+from .models import Team,Contact
 from cars.models import Car
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
 # Create your views here.
 def home(request):
     # return HttpResponse("loremIpsm")
@@ -35,4 +38,45 @@ def about(request):
 def services(request):
     return render(request,'pages/services.html')
 def contact(request):
+    if request.method == "POST":
+        name=request.POST['name']
+        email=request.POST['email']
+        subject=request.POST['subject']
+        phone=request.POST['phone']
+        message=request.POST['message']
+        
+        contact_form=Contact(name=name,email=email,subject=subject,message=message,phone=phone)
+        contact_form.save()
+        
+    #     email_subject="You have new mail regarding this " + subject
+    #     message_body="Name" + name + ".Email" + email + ".phone" + phone + ".messages" + message
+    #     admin_detail=User.objects.get(is_superuser=True)
+    #     admin_email=admin_detail.email
+    #     send_mail(
+    #             email_subject,
+    #             message_body,
+    #             'bida_csit2077@lict.edu.np',
+    #             [admin_email],
+    #             fail_silently=False,
+    # )
+    # #     try:
+    # #         admin_detail = User.objects.get(is_superuser=True)
+    # #         admin_email = admin_detail.email
+    # #         send_mail(
+    # #             'New Car Inquiry',
+    # #             'You have a new inquiry for the car ' + car_title + '. Please login to your admin panel for more info.',
+    # #             'bida_csit2077@lict.edu.np',
+    # #             [admin_email],
+    # #             fail_silently=False,
+    # #         )
+    # #     except ObjectDoesNotExist:
+    # #                 messages.error(request, 'No superuser found to handle the inquiry.')
+    # #     except MultipleObjectsReturned:
+    # # # Handle the case when there are multiple superusers (e.g., send the email to all superusers)
+    # #             superusers = User.objects.filter(is_superuser=True)
+    # #     for superuser in superusers:
+        
+        
+        messages.success(request,'We will contact you soon!')
+        return redirect('contact')
     return render(request,'pages/contact.html')
