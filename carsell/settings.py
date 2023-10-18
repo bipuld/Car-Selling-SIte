@@ -1,12 +1,13 @@
 from pathlib import Path,os
 from django.contrib.messages import constants as messages
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'django-insecure-3@w6l=22xu_wgr_yf66_96y5c%*g!_zsu-(jkz_-7u7c!0+i@*'
+SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 LOGIN_REDIRECT_URL = 'dashboard'
 
 ALLOWED_HOSTS = []
@@ -66,10 +67,7 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_FACEBOOK_KEY = '297042666599188'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'bbfe4b2eebb145f7fcb674e52e5696c5'
-# # SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'your_client_id'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'your_client_secret'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'your_client_id'
-# for google login and signin
+
 
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 # Database
@@ -78,9 +76,9 @@ SOCIAL_AUTH_JSONFIELD_ENABLED = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'carsell_db',
-        'USER':'postgres',
-        'PASSWORD':'12345',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
         'HOST':'localhost',
         
     }
@@ -146,11 +144,7 @@ MESSAGE_TAGS = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Use SMTP as the email backend
 EMAIL_HOST = 'smtp.gmail.com'  # SMTP server for Gmail
 EMAIL_PORT = 587  # Port for TLS (secure) connection
-EMAIL_HOST_USER = 'bida_csit2077@lict.edu.np'  # Your Gmail email address
-EMAIL_HOST_PASSWORD =  '9800775184@ppas' # Your Gmail password or an "App Password" if you have 2-factor authentication enabled
+EMAIL_HOST_USER =  config('EMAIL_ID')  # Your Gmail email address
+EMAIL_HOST_PASSWORD =  config('EMAIL_PASSWORD') # Your Gmail password or an "App Password" if you have 2-factor authentication enabled
 EMAIL_USE_TLS = True  # Use TLS (secure connection)
 EMAIL_USE_SSL = False  # Do not use SSL (False for TLS)
-
-# # Additional email settings (optional)
-# DEFAULT_FROM_EMAIL = 'dawadirishab@gmail,com'  # Default "from" address for emails
-# EMAIL_SUBJECT_PREFIX = '[Car Zone] '  # Prefix for email subjects
