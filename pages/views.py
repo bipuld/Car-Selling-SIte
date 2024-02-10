@@ -38,6 +38,7 @@ def about(request):
 def services(request):
     return render(request,'pages/services.html')
 def contact(request):
+    print('dnkjdnfjk')
     if request.method == "POST":
         name=request.POST['name']
         email=request.POST['email']
